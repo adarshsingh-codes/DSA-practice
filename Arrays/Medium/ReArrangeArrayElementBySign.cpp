@@ -46,31 +46,51 @@ void optimal(vector<int> &arr){
 }
 
 //if the number of positive is not euqal to the number of positive;
-void variety2(vector<int>& arr){
-    vector<int> pos;
-    vector<int> neg;
+vector<int> alternateNumbers(vector<int>& a) {
+    vector<int> pos, neg;
 
-    for(int x : arr){
-        if(x > 0)
-            pos.push_back(x);
-        else
-            neg.push_back(x);
+    int n = a.size();
+
+    for(int i = 0; i < n; i++) {
+        if(a[i] > 0) {
+            pos.push_back(a[i]);
+        }
+        else {
+            neg.push_back(a[i]);
+        }
     }
 
-    int i = 0, j = 0, k = 0;
+    if(pos.size() > neg.size()) {
 
-    while(i < pos.size() && j < neg.size()){
-        arr[k++] = pos[i++];
-        arr[k++] = neg[j++];
+        for(int i = 0; i < neg.size(); i++) {
+            a[2 * i] = pos[i];
+            a[2 * i + 1] = neg[i];
+        }
+
+        int index = neg.size() * 2;
+
+        for(int i = neg.size(); i < pos.size(); i++) {
+            a[index] = pos[i];
+            index++;
+        }
+
+    }
+    else {
+
+        for(int i = 0; i < pos.size(); i++) {
+            a[2 * i] = pos[i];
+            a[2 * i + 1] = neg[i];
+        }
+
+        int index = pos.size() * 2;
+
+        for(int i = pos.size(); i < neg.size(); i++) {
+            a[index] = neg[i];
+            index++;
+        }
     }
 
-    while(i < pos.size()){
-        arr[k++] = pos[i++];
-    }
-
-    while(j < neg.size()){
-        arr[k++] = neg[j++];
-    }
+    return a;
 }
 
 int main(){

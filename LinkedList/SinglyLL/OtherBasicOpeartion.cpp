@@ -43,14 +43,27 @@ void deletelist(Node*&head){
     }
 }
 //search
-
-
-
-
-
-
-
-
+Node* search_element(Node* head,int val){
+    Node* temp=head;
+    while(temp!=NULL){
+        if(temp->data==val){
+            return temp;
+        }
+        temp=temp->next;
+    }
+    return NULL;
+}
+int max_element(Node* head){
+    int max=head->data;
+    Node* temp=head;
+    while(temp!=NULL){
+        if(temp->data>max){
+            max=temp->data;
+        }
+        temp=temp->next;
+    }
+    return max;
+}
 
 int main(){
     Node* head=new Node(10);
@@ -59,7 +72,16 @@ int main(){
     insertAtEnd(head,40);
     insertAtEnd(head,60);
     insertAtEnd(head,30);
+    Node* result=search_element(head,40);
+    
     display(head);
+    cout<<endl;
+    if(result==NULL){
+        cout<<"Not FOund"<<endl;
+    }else{
+        cout<<"Found"<<endl;
+    }
+    cout<<"Max element: "<<max_element(head)<<endl;
     deletelist(head);
     return 0;
 }
