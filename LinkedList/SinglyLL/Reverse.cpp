@@ -32,15 +32,15 @@ void display(Node* head){
         temp=temp->next;
     }
 }
-Node* reverse(Node* head){
+Node * reverse(Node*head){
+    Node* curr=head;
     Node* prev=NULL;
-    Node*curr=head;
-    Node*next=head;
-    while(next!=NULL){
-        next=curr->next;
+    Node* temp=head;
+    while(temp!=NULL){
+        temp=curr->next;
         curr->next=prev;
         prev=curr;
-        curr=next;
+        curr=temp;
     }
     return prev;
 }
